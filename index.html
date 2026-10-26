@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aksara PM | Weekly Progress</title>
+<style>
+:root{--orange:#ff5f00;--ink:#202124;--muted:#70757d;--line:#e7e7e7;--bg:#f6f7f8;--white:#fff;--green:#1d7a46;--red:#c53b32;--amber:#9a6500}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font:14px/1.5 Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif;color:var(--ink)}
+button,input,select,textarea{font:inherit}button{cursor:pointer}.app{display:grid;grid-template-columns:235px 1fr;min-height:100vh}
+aside{background:#202020;color:#fff;padding:25px 15px;display:flex;flex-direction:column;gap:26px}.brand{padding:0 12px}.brand strong{font-size:18px;letter-spacing:.2px}.brand span{display:block;color:#b8b8b8;font-size:12px;margin-top:3px}
+nav{display:grid;gap:6px}nav button{border:0;background:transparent;color:#d7d7d7;text-align:left;padding:12px;border-radius:8px;display:flex;gap:10px;align-items:center}nav button.active,nav button:hover{background:#363636;color:#fff;border-left:3px solid var(--orange);padding-left:9px}.side-note{margin-top:auto;padding:12px;color:#aaa;font-size:11px;border-top:1px solid #444}
+main{min-width:0;padding:30px;max-width:1500px;width:100%;margin:0 auto}.top{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:25px}.eyebrow{font-size:11px;color:var(--orange);font-weight:800;text-transform:uppercase;letter-spacing:1.2px}.top h1{font-size:27px;margin:4px 0 5px;letter-spacing:-.6px}.sub{color:var(--muted);max-width:750px}.top-actions{display:flex;gap:8px;flex-wrap:wrap}.btn{border:1px solid #ddd;background:#fff;border-radius:8px;padding:10px 14px;font-weight:650}.btn.primary{background:var(--orange);border-color:var(--orange);color:#fff}.btn.dark{background:#252525;color:white;border-color:#252525}.btn.small{padding:6px 10px;font-size:12px}
+.page{display:none}.page.active{display:block}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin-bottom:18px}.stat,.panel,.client-card{background:#fff;border:1px solid var(--line);border-radius:12px}.stat{padding:17px}.stat .label{font-size:12px;color:var(--muted)}.stat .value{font-size:27px;font-weight:750;margin:4px 0}.stat .hint{font-size:11px;color:var(--muted)}.panel{padding:20px;margin-bottom:16px}.panel-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:15px}.panel h2{font-size:16px;margin:0}.panel p{margin:5px 0;color:var(--muted)}.section-title{font-size:12px;text-transform:uppercase;letter-spacing:.8px;color:#666;font-weight:800;margin:24px 0 10px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.field{display:flex;flex-direction:column;gap:5px}.field.full{grid-column:1/-1}.field label{font-size:12px;font-weight:700;color:#50545a}.field small{font-size:11px;color:var(--muted)}input,select,textarea{width:100%;padding:10px 11px;border:1px solid #d9dce0;border-radius:8px;background:#fff;color:var(--ink);outline:none}textarea{min-height:78px;resize:vertical}input:focus,select:focus,textarea:focus{border-color:var(--orange);box-shadow:0 0 0 3px #ff5f0018}.divider{border:0;border-top:1px solid var(--line);margin:20px 0}.checklist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.check{display:flex;gap:8px;align-items:flex-start;padding:10px;border:1px solid var(--line);border-radius:8px;font-size:12px}.check input{width:auto;margin-top:3px;accent-color:var(--orange)}.tag{display:inline-flex;align-items:center;border-radius:999px;padding:4px 8px;font-size:11px;font-weight:750;background:#eee;color:#555}.tag.green{background:#e7f5eb;color:var(--green)}.tag.red{background:#fdebea;color:var(--red)}.tag.amber{background:#fff3d8;color:var(--amber)}.client-list{display:grid;gap:12px}.client-card{padding:16px;display:grid;grid-template-columns:1fr auto;gap:12px}.client-card h3{margin:0 0 4px;font-size:15px}.meta{color:var(--muted);font-size:12px}.client-bottom{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;padding-top:12px;border-top:1px solid var(--line)}.mini-label{font-size:11px;color:var(--muted)}.mini-value{font-size:13px;font-weight:700;margin-top:3px}.issue{border-left:3px solid #e5a000;padding:12px 14px;background:#fffbf1;border-radius:0 8px 8px 0;margin:10px 0}.issue.critical{border-color:var(--red);background:#fff5f4}.action-row{display:grid;grid-template-columns:1fr auto;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}.action-row:last-child{border-bottom:0}.action-row strong{display:block}.action-row small{color:var(--muted)}.empty{padding:30px;text-align:center;color:var(--muted);border:1px dashed #d4d4d4;border-radius:10px}.table-wrap{overflow:auto}.metric-table input{min-width:90px;padding:8px}
+
+.strategy-checklist{grid-template-columns:1fr;gap:10px}
+.strategy-check{align-items:flex-start;padding:13px}
+.strategy-check input{margin-top:4px;flex:0 0 auto}
+.strategy-check span{display:flex;flex-direction:column;gap:5px}
+.strategy-check strong{font-size:12px;line-height:1.45}
+.strategy-check small{font-size:11px;line-height:1.6;color:var(--muted);font-weight:400}
+.upload-box{border:1.5px dashed #c9cdd2;border-radius:12px;background:#fcfcfc;padding:24px 16px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;transition:.15s}
+.upload-box.dragover{border-color:var(--orange);background:#fff4ec}
+.upload-icon{display:grid;place-items:center;width:42px;height:42px;border-radius:12px;background:#fff0e6;color:var(--orange);font-size:27px;font-weight:800}
+.upload-box strong{font-size:14px}.upload-box span{font-size:11px;color:var(--muted)}.upload-box .upload-note{font-size:10px}
+.file-preview{display:grid;gap:8px;margin-top:10px}.file-item{display:flex;gap:10px;align-items:center;border:1px solid var(--line);padding:10px;border-radius:9px;background:#fff;min-width:0}
+.file-type{width:35px;height:38px;flex:0 0 35px;border-radius:7px;background:#f1f2f4;display:grid;place-items:center;font-size:10px;font-weight:800;color:#555}
+.file-info{flex:1;min-width:0}.file-info strong{display:block;font-size:12px;overflow-wrap:anywhere}.file-info small{color:var(--muted);font-size:10px}
+.file-remove{border:0;background:#f6f6f6;border-radius:6px;padding:6px 9px;color:#555}.muted{font-size:12px;color:var(--muted);padding:8px 0}
+.metric-table th,.metric-table td{vertical-align:middle}.metric-table td:first-child{min-width:170px}table{border-collapse:collapse;width:100%;min-width:620px}th,td{text-align:left;border-bottom:1px solid var(--line);padding:11px 9px;font-size:12px}th{color:var(--muted);font-weight:750;background:#fafafa}.report-block{padding:15px 0;border-bottom:1px solid var(--line)}.report-block:last-child{border:0}.report-block h3{font-size:14px;margin:0 0 7px}.report-block p{white-space:pre-wrap;color:#444;margin:4px 0}.toolbar{display:flex;gap:8px;flex-wrap:wrap}.notice{padding:12px;border-radius:8px;background:#fff4e9;color:#7b3a00;font-size:12px;margin-bottom:15px}.footer-note{color:#777;font-size:11px;margin-top:16px}
+@media(max-width:900px){.app{grid-template-columns:1fr}aside{padding:14px;gap:12px}.brand{padding:0 5px}nav{display:flex;overflow:auto}nav button{white-space:nowrap}.side-note{display:none}main{padding:20px 14px}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.top{display:block}.top-actions{margin-top:15px}.grid2{grid-template-columns:1fr}.client-bottom{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){.form-grid,.checklist{grid-template-columns:1fr}.top h1{font-size:23px}.stats{gap:8px}.stat{padding:12px}.stat .value{font-size:23px}.client-card{grid-template-columns:1fr}.client-card>.tag{justify-self:start}.client-bottom{grid-template-columns:1fr 1fr}.panel{padding:15px}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside>
+  <div class="brand"><strong>AKSARA<span style="color:var(--orange);display:inline;font-size:inherit">.</span></strong><span>PM · Client & Growth Operations</span></div>
+  <nav>
+    <button class="active" data-page="overview">▦ &nbsp; Overview</button>
+    <button data-page="input">＋ &nbsp; Weekly Progress</button>
+    <button data-page="report">▤ &nbsp; Weekly Analysis</button>
+    <button data-page="history">◷ &nbsp; Riwayat Laporan</button>
+  </nav>
+  <div class="side-note">Satu kali input per klien setiap minggu.<br>Ringkasan dan agenda rapat dibuat dari data yang sama.</div>
+</aside>
+<main>
+  <div class="top">
+    <div><div class="eyebrow">Client & Growth Operations</div><h1 id="pageTitle">Weekly Overview</h1><div class="sub" id="pageSub">Pantau progres klien, kendala, dan action plan mingguan dalam satu tempat.</div></div>
+    <div class="top-actions"><button class="btn" id="exportBtn">Export JSON</button><button class="btn primary" id="newBtn">＋ Input Progress</button></div>
+  </div>
+
+  <section class="page active" id="page-overview">
+    <div class="stats">
+      <div class="stat"><div class="label">Laporan minggu ini</div><div class="value" id="statReports">0</div><div class="hint">Laporan per klien</div></div>
+      <div class="stat"><div class="label">Klien perlu perhatian</div><div class="value" id="statAttention">0</div><div class="hint">Ada kendala atau keterlambatan</div></div>
+      <div class="stat"><div class="label">Action belum selesai</div><div class="value" id="statActions">0</div><div class="hint">Tindak lanjut minggu berjalan</div></div>
+      <div class="stat"><div class="label">Pekerjaan selesai</div><div class="value" id="statDone">0%</div><div class="hint">Dari target task yang dilaporkan</div></div>
+    </div>
+    <div class="panel"><div class="panel-head"><div><h2>Ringkasan untuk Owner</h2><p>Hasil otomatis dari input weekly progress seluruh klien.</p></div><span class="tag" id="weekTag">Minggu ini</span></div><div id="overviewSummary"></div></div>
+    <div class="grid2">
+      <div class="panel"><div class="panel-head"><h2>Klien yang perlu perhatian</h2></div><div id="attentionList"></div></div>
+      <div class="panel"><div class="panel-head"><h2>Action plan minggu depan</h2></div><div id="actionList"></div></div>
+    </div>
+  </section>
+
+  <section class="page" id="page-input">
+    <div class="notice">Isi satu laporan untuk satu klien. Jika tidak ada kendala, tulis “Tidak ada” pada kolom kendala. Sistem akan merangkum laporan menjadi bahan weekly meeting.</div>
+    <form id="progressForm" class="panel">
+      <div class="panel-head"><div><h2>Input Weekly Progress</h2><p>Catat progres, hasil, masalah, dan rencana minggu depan.</p></div><span class="tag">Form utama</span></div>
+      <div class="form-grid">
+        <div class="field"><label>Nama PM *</label><input name="pm" required placeholder="Nama project manager"></div>
+        <div class="field"><label>Nama klien / brand *</label><input name="client" required placeholder="Contoh: Poulet"></div>
+        <div class="field"><label>Periode minggu *</label><input name="week" type="text" required placeholder="Contoh: 19–25 Okt 2026"></div>
+        <div class="field"><label>Status klien *</label><select name="status" required><option value="On Track">On Track</option><option value="Perlu Perhatian">Perlu Perhatian</option><option value="Berisiko">Berisiko</option></select></div>
+        <div class="field"><label>Target task minggu ini</label><input name="planned" type="number" min="0" value="0"></div>
+        <div class="field"><label>Task selesai</label><input name="completed" type="number" min="0" value="0"></div>
+        <div class="field full"><label>Progres pekerjaan per layanan</label><textarea name="progress" placeholder="Contoh: 8 dari 10 konten selesai; 4 desain approved; 2 reels menunggu editing."></textarea></div>
+        <div class="field full">
+          <label>Hasil / Performa Klien</label>
+          <small>Isi angka Before dan After berdasarkan periode yang dibandingkan. Target opsional jika belum ditetapkan bersama klien. Kolom yang datanya tidak tersedia boleh dikosongkan.</small>
+          <div class="table-wrap" style="margin-top:8px">
+            <table class="metric-table">
+              <thead><tr><th>Indikator</th><th>Before</th><th>After</th><th>Target</th></tr></thead>
+              <tbody>
+                <tr><td><b>Instagram Followers</b></td><td><input name="followersBefore" type="number" min="0" step="1" placeholder="Contoh: 1000"></td><td><input name="followersAfter" type="number" min="0" step="1" placeholder="Contoh: 1010"></td><td><input name="followersTarget" type="number" min="0" step="1" placeholder="Target"></td></tr>
+                <tr><td><b>Reach</b></td><td><input name="reachBefore" type="number" min="0" step="1" placeholder="Before"></td><td><input name="reachAfter" type="number" min="0" step="1" placeholder="After"></td><td><input name="reachTarget" type="number" min="0" step="1" placeholder="Target"></td></tr>
+                <tr><td><b>Engagement Rate (ER %)</b></td><td><input name="erBefore" type="number" min="0" step="0.01" placeholder="Contoh: 2.5"></td><td><input name="erAfter" type="number" min="0" step="0.01" placeholder="Contoh: 2.8"></td><td><input name="erTarget" type="number" min="0" step="0.01" placeholder="Target %"></td></tr>
+                <tr><td><b>Profile Visits</b></td><td><input name="visitsBefore" type="number" min="0" step="1" placeholder="Before"></td><td><input name="visitsAfter" type="number" min="0" step="1" placeholder="After"></td><td><input name="visitsTarget" type="number" min="0" step="1" placeholder="Target"></td></tr>
+                <tr><td><b>Leads / WhatsApp Inquiries</b></td><td><input name="leadsBefore" type="number" min="0" step="1" placeholder="Before"></td><td><input name="leadsAfter" type="number" min="0" step="1" placeholder="After"></td><td><input name="leadsTarget" type="number" min="0" step="1" placeholder="Target"></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="field full"><label>Insight / analisis PM</label><textarea name="performanceInsight" placeholder="Apa arti perubahan angka ini? Apa faktor yang mungkin memengaruhi hasil? Tuliskan berdasarkan data yang tersedia."></textarea></div>
+        <div class="field full"><label>Tautan laporan performa (opsional)</label><input name="performanceLink" placeholder="Link Meta Ads, Instagram Insights, dashboard, atau laporan klien"></div>
+      </div>
+      <hr class="divider">
+      <div class="section-title">Tindak lanjut dari minggu sebelumnya</div>
+      <div class="notice">Gunakan bagian ini untuk memperbarui action minggu lalu. Jika ini laporan pertama atau tidak ada action terbuka, pilih opsi yang sesuai.</div>
+      <div class="form-grid">
+        <div class="field"><label>Status action minggu sebelumnya</label><select name="previousActionStatus"><option value="Tidak ada action sebelumnya">Tidak ada action sebelumnya</option><option value="Belum Dimulai">Belum Dimulai</option><option value="Sedang Berjalan">Sedang Berjalan</option><option value="Selesai">Selesai</option><option value="Terhambat">Terhambat</option></select></div>
+        <div class="field"><label>Deadline awal task (jika terlambat)</label><input name="originalDeadline" type="date"></div>
+        <div class="field"><label>Tanggal selesai aktual / estimasi terbaru</label><input name="actualOrRevisedDate" type="date"></div>
+        <div class="field"><label>Alasan perubahan deadline</label><input name="deadlineChangeReason" placeholder="Contoh: approval klien mundur"></div>
+        <div class="field full"><label>Hasil follow-up / catatan penyelesaian action sebelumnya</label><textarea name="previousActionResult" placeholder="Apa hasil action minggu lalu? Jika belum selesai, apa hambatan dan langkah berikutnya?"></textarea></div>
+      </div>
+      <hr class="divider">
+      <div class="section-title">Checklist kualitas strategi dan eksekusi PM</div>
+      <div class="notice">Centang berdasarkan bukti yang tersedia. Pilih "Belum relevan" jika item memang tidak termasuk ruang lingkup pekerjaan klien minggu ini.</div>
+      <div class="checklist strategy-checklist">
+        <label class="check strategy-check">
+          <input type="checkbox" name="strategyGoalAligned" value="Ya">
+          <span><strong>Strategi / aktivitas sesuai tujuan klien dan KPI yang disepakati</strong><small>Centang jika strategi atau aktivitas minggu ini mengarah pada tujuan klien dan KPI yang sudah disepakati. Contoh: tujuan meningkatkan awareness, lalu konten dan aktivitas yang dijalankan memang mendukung awareness.</small></span>
+        </label>
+        <label class="check strategy-check">
+          <input type="checkbox" name="contentPlanAligned" value="Ya">
+          <span><strong>Content plan sesuai strategi, pilar, dan prioritas</strong><small>Centang jika rencana konten mengikuti strategi, content pillar, dan prioritas yang telah disetujui. Contoh: content plan tidak menyimpang dari positioning brand dan tujuan kampanye.</small></span>
+        </label>
+        <label class="check strategy-check">
+          <input type="checkbox" name="outputBriefAligned" value="Ya">
+          <span><strong>Output produksi sesuai brief dan standar kualitas</strong><small>Centang jika hasil desain atau video yang sudah bisa diperiksa sesuai brief, guideline, format, dan standar kualitas. Jika belum selesai diproduksi, jangan langsung dianggap gagal kualitas; nilai hanya output yang sudah bisa diperiksa.</small></span>
+        </label>
+        <label class="check strategy-check">
+          <input type="checkbox" name="recommendationDataBased" value="Ya">
+          <span><strong>Rekomendasi PM didukung data atau bukti yang tersedia</strong><small>Centang jika rekomendasi punya dasar yang jelas, misalnya data performa, evaluasi konten, feedback klien, atau catatan kendala. Contoh: mengusulkan perubahan format konten berdasarkan hasil performa, bukan sekadar dugaan.</small></span>
+        </label>
+      </div>
+      <div class="field full" style="margin-top:12px"><label>Catatan / bukti kualitas strategi dan eksekusi</label><textarea name="strategyEvidenceNotes" placeholder="Jika checklist tidak dicentang, jelaskan alasannya. Cantumkan konteks, tindakan PM, dan bukti pendukung jika tersedia."></textarea><small>Jangan langsung menilai PM gagal jika ada hambatan eksternal. Catat apa yang terjadi dan tindakan yang sudah dilakukan PM.</small></div>
+      <hr class="divider">
+      <div class="section-title">Kendala dan penyebab</div>
+      <div class="form-grid">
+        <div class="field full"><label>Kendala / masalah</label><textarea name="issue" placeholder="Apa yang terlambat, terhambat, atau berisiko? Tulis 'Tidak ada' bila tidak ada kendala."></textarea></div>
+        <div class="field"><label>Divisi / pihak terkait</label><select name="division"><option value="">Pilih jika ada</option><option>Project Management</option><option>Content Planner</option><option>Design</option><option>Video / Production</option><option>Social Media Admin</option><option>KOL</option><option>Klien / Approval</option><option>Eksternal / Vendor</option><option>Lintas divisi</option></select></div>
+        <div class="field"><label>Tingkat dampak</label><select name="impact"><option value="Rendah">Rendah</option><option value="Sedang">Sedang</option><option value="Tinggi">Tinggi</option><option value="Kritis">Kritis</option></select></div>
+        <div class="field full"><label>Root cause / alasan utama</label><textarea name="cause" placeholder="Fokus pada penyebab yang bisa diverifikasi, bukan menyalahkan orang."></textarea></div>
+        <div class="field"><label>Kapan masalah diketahui?</label><input name="issueKnownDate" type="date"></div>
+        <div class="field"><label>Kapan dieskalasikan? (jika perlu)</label><input name="escalationDate" type="date"></div>
+        <div class="field full"><label>Follow-up PM yang sudah dilakukan</label><textarea name="followup" placeholder="Contoh: mengingatkan PIC pada tanggal..., mengonfirmasi ulang deadline, menghubungi klien, atau eskalasi ke Owner."></textarea></div>
+        <div class="field full">
+          <label>Bukti Pendukung</label>
+          <small>Upload screenshot chat, brief, desain, laporan performa, atau bukti follow-up. File yang dipilih akan ditampilkan pada laporan ini. Untuk versi produksi, penyimpanan cloud diperlukan agar Owner bisa mengakses dari perangkat lain.</small>
+          <div class="upload-box" id="evidenceDrop">
+            <input id="evidenceFiles" name="evidenceFiles" type="file" multiple accept=".png,.jpg,.jpeg,.webp,.pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.mp4,.mov,.txt" style="display:none">
+            <div class="upload-icon">⇧</div>
+            <strong>Pilih file atau tarik file ke sini</strong>
+            <span>PNG, JPG, WEBP, PDF, DOCX, XLSX, PPTX, MP4, MOV</span>
+            <button type="button" class="btn small" id="chooseEvidence">Pilih File</button>
+            <span class="upload-note">Bisa pilih beberapa file sekaligus. Maksimum demo 20 MB per file.</span>
+          </div>
+          <div id="evidencePreview" class="file-preview"><div class="muted">Belum ada file yang dipilih.</div></div>
+          <div class="field" style="margin-top:10px"><label>Tautan pendukung (opsional)</label><input name="evidence" placeholder="Google Drive, tracker, chat, atau laporan online"></div>
+        </div>
+      </div>
+      <hr class="divider">
+      <div class="section-title">Solusi dan action plan minggu depan</div>
+      <div class="form-grid">
+        <div class="field full"><label>Solusi / keputusan yang diusulkan</label><textarea name="solution" placeholder="Apa yang perlu dilakukan untuk menyelesaikan atau mencegah masalah?"></textarea></div>
+        <div class="field full"><label>Rekomendasi PM berdasarkan data</label><textarea name="recommendation" placeholder="Tuliskan tindakan spesifik, alasan berdasarkan data, dan hasil yang ingin dicapai."></textarea></div>
+        <div class="field"><label>PIC action berikutnya</label><input name="pic" placeholder="Nama penanggung jawab"></div>
+        <div class="field"><label>Deadline action</label><input name="deadline" type="date"></div>
+        <div class="field"><label>Status action</label><select name="actionStatus"><option value="Belum Dimulai">Belum Dimulai</option><option value="Sedang Berjalan">Sedang Berjalan</option><option value="Selesai">Selesai</option><option value="Terhambat">Terhambat</option></select></div>
+        <div class="field full"><label>Prioritas kerja minggu depan</label><textarea name="next" placeholder="Tuliskan 1–3 prioritas yang spesifik dan terukur."></textarea></div>
+        <div class="field full"><label>Butuh keputusan Owner?</label><select name="ownerDecision"><option value="Tidak">Tidak</option><option value="Ya">Ya — perlu keputusan / eskalasi</option></select></div>
+        <div class="field full"><label>Catatan PM</label><textarea name="notes" placeholder="Konteks tambahan, dependensi, atau hal yang perlu dibahas di rapat."></textarea></div>
+      </div>
+      <div class="toolbar" style="margin-top:20px"><button class="btn primary" type="submit">Simpan & Buat Analisis</button><button class="btn" type="reset">Reset Form</button></div>
+    </form>
+  </section>
+
+  <section class="page" id="page-report">
+    <div class="panel"><div class="panel-head"><div><h2>Weekly Analysis & Meeting Brief</h2><p>Ringkasan ini dibuat dari laporan yang sudah diinput. Gunakan sebagai agenda rapat mingguan.</p></div><div class="toolbar"><button class="btn small" id="copyReport">Salin Ringkasan</button><button class="btn small" onclick="window.print()">Print</button></div></div><div id="analysisContent"></div></div>
+  </section>
+
+  <section class="page" id="page-history">
+    <div class="panel"><div class="panel-head"><div><h2>Riwayat Weekly Progress</h2><p>Semua laporan tersimpan di browser/perangkat ini.</p></div><button class="btn small" id="clearBtn">Hapus Semua Data</button></div><div id="historyContent"></div></div>
+  </section>
+  <div class="footer-note">Prototipe lokal · Data tersimpan di browser ini (localStorage), belum tersinkron antarperangkat dan belum memakai login/akses produksi.</div>
+</main>
+</div>
+<script>
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const STORE='aksara_weekly_progress_v2';
+let reports=load();
+let pendingEvidence=[];
+const evidenceInput=document.getElementById('evidenceFiles');
+const evidenceDrop=document.getElementById('evidenceDrop');
+const evidencePreview=document.getElementById('evidencePreview');
+const chooseEvidence=document.getElementById('chooseEvidence');
+function bytesLabel(n){if(n<1024*1024)return Math.round(n/1024)+' KB';return (n/1024/1024).toFixed(1)+' MB'}
+function renderEvidencePreview(){
+ if(!pendingEvidence.length){evidencePreview.innerHTML='<div class="muted">Belum ada file yang dipilih.</div>';return}
+ evidencePreview.innerHTML=pendingEvidence.map((f,i)=>`<div class="file-item"><div class="file-type">${esc((f.name.split('.').pop()||'FILE').slice(0,4).toUpperCase())}</div><div class="file-info"><strong>${esc(f.name)}</strong><small>${bytesLabel(f.size)} · siap dilampirkan pada laporan ini</small></div><button class="file-remove" type="button" data-remove-file="${i}">Hapus</button></div>`).join('');
+ evidencePreview.querySelectorAll('[data-remove-file]').forEach(b=>b.onclick=()=>{pendingEvidence.splice(Number(b.dataset.removeFile),1);renderEvidencePreview()});
+}
+function addEvidence(files){
+ const incoming=[...files];
+ for(const f of incoming){
+  if(f.size>20*1024*1024){alert('File '+f.name+' melebihi batas demo 20 MB.');continue}
+  if(pendingEvidence.some(x=>x.name===f.name&&x.size===f.size)){continue}
+  pendingEvidence.push(f);
+ }
+ renderEvidencePreview();
+}
+chooseEvidence.addEventListener('click',()=>evidenceInput.click());
+evidenceInput.addEventListener('change',e=>{addEvidence(e.target.files);evidenceInput.value=''});
+['dragenter','dragover'].forEach(ev=>evidenceDrop.addEventListener(ev,e=>{e.preventDefault();evidenceDrop.classList.add('dragover')}));
+['dragleave','drop'].forEach(ev=>evidenceDrop.addEventListener(ev,e=>{e.preventDefault();evidenceDrop.classList.remove('dragover')}));
+evidenceDrop.addEventListener('drop',e=>addEvidence(e.dataTransfer.files));
+
+function load(){try{return JSON.parse(localStorage.getItem(STORE)||'[]')}catch(e){return []}}
+function save(){localStorage.setItem(STORE,JSON.stringify(reports));renderAll()}
+function esc(s=''){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function val(r,k){return (r[k]||'').trim()}
+function hasIssue(r){let x=val(r,'issue').toLowerCase();return x!==''&&x!=='tidak ada'&&x!=='tidak ada kendala'&&x!=='-'}
+function isAttention(r){return r.status!=='On Track'||hasIssue(r)||r.ownerDecision==='Ya'||Number(r.completed)<Number(r.planned)}
+function pct(r){return Number(r.planned)>0?Math.min(100,Math.round(Number(r.completed)/Number(r.planned)*100)):null}
+function fmtNum(n,dec=0){if(n===undefined||n===null||n==='')return '—';let x=Number(n);return Number.isFinite(x)?x.toLocaleString('id-ID',{maximumFractionDigits:dec,minimumFractionDigits:0}):'—'}
+const metricDefs=[
+ {key:'followers',label:'Instagram Followers',dec:0},{key:'reach',label:'Reach',dec:0},
+ {key:'er',label:'Engagement Rate (ER)',dec:2,suffix:'%'},{key:'visits',label:'Profile Visits',dec:0},
+ {key:'leads',label:'Leads / WhatsApp Inquiries',dec:0}
+];
+function metricRows(r){
+ return metricDefs.filter(m=>[r[m.key+'Before'],r[m.key+'After'],r[m.key+'Target']].some(v=>v!==undefined&&v!==null&&v!=='')).map(m=>{
+  const b=r[m.key+'Before'],a=r[m.key+'After'],t=r[m.key+'Target'];let delta='—',relative='';
+  if(b!==''&&b!==undefined&&a!==''&&a!==undefined){
+   const d=Number(a)-Number(b);delta=(d>0?'+':'')+fmtNum(d,m.dec)+(m.suffix||'');
+   if(Number(b)!==0)relative=' ('+(d>0?'+':'')+((d/Number(b))*100).toLocaleString('id-ID',{maximumFractionDigits:2})+'%)';
+   if(m.key==='er')relative=' ('+(d>0?'+':'')+d.toLocaleString('id-ID',{maximumFractionDigits:2})+' poin persentase)';
+  }
+  let targetText='Target: '+fmtNum(t,m.dec)+(m.suffix||'');
+  if(t!==''&&t!==undefined&&a!==''&&a!==undefined)targetText=Number(a)>=Number(t)?'Target tercapai':'Belum mencapai target';
+  return {label:m.label,before:fmtNum(b,m.dec)+(m.suffix||''),after:fmtNum(a,m.dec)+(m.suffix||''),delta:delta+relative,target:targetText};
+ });
+}
+function performanceMarkup(r){
+ const rows=metricRows(r);
+ let out=rows.length?'<div class="table-wrap"><table><thead><tr><th>Indikator</th><th>Before</th><th>After</th><th>Perubahan</th><th>Target</th></tr></thead><tbody>'+rows.map(m=>'<tr><td><b>'+esc(m.label)+'</b></td><td>'+esc(m.before)+'</td><td>'+esc(m.after)+'</td><td>'+esc(m.delta)+'</td><td>'+esc(m.target)+'</td></tr>').join('')+'</tbody></table></div>':'<p>Belum ada angka performa yang diisi.</p>';
+ if(val(r,'performanceInsight'))out+='<p><b>Insight PM:</b> '+esc(r.performanceInsight)+'</p>';
+ if(val(r,'recommendation'))out+='<p><b>Rekomendasi PM:</b> '+esc(r.recommendation)+'</p>';
+ if(val(r,'performanceLink'))out+='<p><b>Tautan laporan:</b> <a href="'+esc(r.performanceLink)+'" target="_blank" rel="noopener">Buka sumber data</a></p>';
+ return out;
+}
+
+function tag(status){let c=status==='On Track'?'green':status==='Berisiko'?'red':'amber';return `<span class="tag ${c}">${esc(status||'Belum dinilai')}</span>`}
+function nav(page){$$('nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===page));$$('.page').forEach(p=>p.classList.toggle('active',p.id==='page-'+page));const meta={overview:['Weekly Overview','Pantau progres klien, kendala, dan action plan mingguan dalam satu tempat.'],input:['Input Weekly Progress','Satu kali pengisian per klien, untuk menghasilkan laporan dan agenda rapat.'],report:['Weekly Analysis','Laporan analisis dan bahan weekly meeting dari seluruh input minggu ini.'],history:['Riwayat Laporan','Telusuri laporan mingguan yang sudah disimpan.']};$('#pageTitle').textContent=meta[page][0];$('#pageSub').textContent=meta[page][1];if(page==='report')renderAnalysis()}
+$$('nav button').forEach(b=>b.onclick=()=>nav(b.dataset.page));$('#newBtn').onclick=()=>nav('input');
+$('#progressForm').addEventListener('submit',e=>{e.preventDefault();const fd=new FormData(e.target);const r=Object.fromEntries(fd.entries());r.evidenceFiles=pendingEvidence.map(f=>({name:f.name,size:f.size,type:f.type}));r.id=Date.now().toString();r.createdAt=new Date().toISOString();r.planned=Number(r.planned)||0;r.completed=Number(r.completed)||0;reports.unshift(r);save();pendingEvidence=[];renderEvidencePreview();e.target.reset();nav('report');window.scrollTo({top:0,behavior:'smooth'});if(r.evidenceFiles.length)alert('Nama file tercatat pada laporan demo. Isi file belum diunggah ke server; prototipe ini hanya menyimpan metadata file secara lokal.')});
+function renderAll(){
+const active=reports;const attention=active.filter(isAttention);const actions=active.filter(r=>val(r,'next')||val(r,'solution'));const planned=active.reduce((s,r)=>s+Number(r.planned||0),0),done=active.reduce((s,r)=>s+Math.min(Number(r.completed||0),Number(r.planned||0)),0);
+$('#statReports').textContent=active.length;$('#statAttention').textContent=attention.length;$('#statActions').textContent=actions.length;$('#statDone').textContent=planned?Math.round(done/planned*100)+'%':'—';
+$('#overviewSummary').innerHTML=active.length?`<p>Minggu ini terdapat <b>${active.length} laporan klien</b>. <b>${attention.length} klien</b> perlu diperhatikan dan ada <b>${actions.length} rencana tindak lanjut</b> yang perlu dipastikan PIC serta deadlinenya.</p><p>${active.filter(r=>r.ownerDecision==='Ya').length?`<span class="tag red">${active.filter(r=>r.ownerDecision==='Ya').length} perlu keputusan Owner</span>`:'Belum ada permintaan keputusan Owner yang dicatat.'}</p>`:`<div class="empty">Belum ada laporan. Klik <b>Input Progress</b> untuk mulai mencatat progres salah satu klien.</div>`;
+$('#attentionList').innerHTML=attention.length?attention.map(r=>`<div class="action-row"><div><strong>${esc(r.client)}</strong><small>${esc(r.issue||'Status perlu perhatian')} · ${esc(r.division||'Divisi belum ditentukan')}</small></div>${tag(r.status)}</div>`).join(''):'<div class="empty">Belum ada klien yang ditandai perlu perhatian.</div>';
+$('#actionList').innerHTML=actions.length?actions.slice(0,6).map(r=>`<div class="action-row"><div><strong>${esc(r.client)} — ${esc(r.pic||'PIC belum ditentukan')}</strong><small>${esc(r.next||r.solution||'Action belum dirinci')} ${r.deadline?'· Deadline '+esc(r.deadline):'· Deadline belum ditentukan'}</small></div>${r.ownerDecision==='Ya'?tag('Berisiko'):tag('Perlu Perhatian')}</div>`).join(''):'<div class="empty">Belum ada action plan. Isi rencana minggu depan pada form laporan.</div>';
+$('#weekTag').textContent=active[0]?.week||'Minggu ini';
+renderHistory();renderAnalysis();
+}
+function renderAnalysis(){
+const list=reports;const needs=list.filter(isAttention);const owner=list.filter(r=>r.ownerDecision==='Ya');const planned=list.reduce((s,r)=>s+Number(r.planned||0),0),completed=list.reduce((s,r)=>s+Math.min(Number(r.completed||0),Number(r.planned||0)),0);
+if(!list.length){$('#analysisContent').innerHTML='<div class="empty">Belum ada data untuk dianalisis. Isi Weekly Progress untuk membuat laporan otomatis.</div>';return}
+let html=`<div class="stats"><div class="stat"><div class="label">Klien dilaporkan</div><div class="value">${list.length}</div></div><div class="stat"><div class="label">Perlu perhatian</div><div class="value">${needs.length}</div></div><div class="stat"><div class="label">Task selesai</div><div class="value">${planned?Math.round(completed/planned*100)+'%':'—'}</div></div><div class="stat"><div class="label">Perlu keputusan Owner</div><div class="value">${owner.length}</div></div></div>`;
+html+=`<div class="report-block"><h3>1. Executive Summary</h3><p>${list.length} laporan klien telah diisi. ${needs.length} klien perlu perhatian. ${owner.length} laporan membutuhkan keputusan Owner. ${planned?`Realisasi penyelesaian task yang dicatat adalah ${Math.round(completed/planned*100)}% (${completed} dari ${planned} task).`:'Belum ada data target dan realisasi task yang cukup untuk menghitung persentase.'}</p></div>`;
+html+='<div class="report-block"><h3>2. Progres per Klien</h3><div class="table-wrap"><table><thead><tr><th>Klien</th><th>Status</th><th>Task</th><th>Ringkasan progres</th></tr></thead><tbody>';
+list.forEach(r=>html+=`<tr><td><b>${esc(r.client)}</b><br><small>${esc(r.pm)} · ${esc(r.week)}</small></td><td>${tag(r.status)}</td><td>${r.completed}/${r.planned}${pct(r)!==null?' ('+pct(r)+'%)':''}</td><td>${esc(r.progress||'Belum ada detail progres')}</td></tr>`);
+html+='</tbody></table></div></div>';
+html+='<div class="report-block"><h3>3. Kendala, Penyebab, dan Dampak</h3>';
+const issueList=list.filter(hasIssue);
+html+=issueList.length?issueList.map(r=>`<div class="issue ${['Tinggi','Kritis'].includes(r.impact)?'critical':''}"><b>${esc(r.client)}</b> · ${esc(r.division||'Divisi belum ditentukan')} · Dampak ${esc(r.impact||'belum dinilai')}<p><b>Kendala:</b> ${esc(r.issue)}</p><p><b>Root cause:</b> ${esc(r.cause||'Belum dicatat')}</p><p><b>Masalah diketahui:</b> ${esc(r.issueKnownDate||'Belum dicatat')} · <b>Eskalasi:</b> ${esc(r.escalationDate||'Tidak dicatat')}</p><p><b>Follow-up PM:</b> ${esc(r.followup||'Belum dicatat')}</p><p><b>Bukti:</b> ${r.evidence?`<a href="${esc(r.evidence)}" target="_blank" rel="noopener">Buka tautan pendukung</a>`:'Tidak ada tautan pendukung'}</p>${r.evidenceFiles?.length?`<p><b>File yang dilampirkan:</b> ${r.evidenceFiles.map(f=>esc(f.name)+' ('+bytesLabel(f.size)+')').join(', ')}</p>`:'<p><b>File upload:</b> Tidak ada</p>'}</div>`).join(''):'<p>Tidak ada kendala yang dicatat dalam laporan minggu ini.</p>';
+html+='</div>';
+html+='<div class="report-block"><h3>4. Hasil / Performa Klien</h3>';
+html+=list.some(r=>metricRows(r).length||val(r,'performanceInsight')||val(r,'performanceLink'))?list.filter(r=>metricRows(r).length||val(r,'performanceInsight')||val(r,'performanceLink')).map(r=>`<div style="margin:10px 0"><p><b>${esc(r.client)}</b></p>${performanceMarkup(r)}</div>`).join(''):'<p>Belum ada data performa klien yang dimasukkan. Hindari menarik kesimpulan performa tanpa data pendukung.</p>';
+html+='</div>';
+html+='<div class="report-block"><h3>5. Tindak Lanjut Minggu Sebelumnya & Kontrol Deadline</h3>';
+const prevList=list.filter(r=>val(r,'previousActionStatus')&&r.previousActionStatus!=='Tidak ada action sebelumnya'||val(r,'originalDeadline')||val(r,'previousActionResult'));
+html+=prevList.length?prevList.map(r=>`<div class="action-row"><div><strong>${esc(r.client)} · ${esc(r.previousActionStatus||'Status belum diisi')}</strong><small>Deadline awal: ${esc(r.originalDeadline||'—')} · Aktual/estimasi terbaru: ${esc(r.actualOrRevisedDate||'—')}<br>Alasan perubahan: ${esc(r.deadlineChangeReason||'Tidak dicatat')}<br>Hasil follow-up: ${esc(r.previousActionResult||'Belum dicatat')}</small></div>${tag(r.previousActionStatus==='Terhambat'?'Berisiko':r.previousActionStatus==='Selesai'?'On Track':'Perlu Perhatian')}</div>`).join(''):'<p>Tidak ada tindak lanjut minggu sebelumnya yang dilaporkan.</p>';
+html+='</div>';
+html+='<div class="report-block"><h3>6. Checklist Kualitas Strategi & Eksekusi PM</h3>';
+const checks=[['strategyGoalAligned','Strategi sesuai tujuan/KPI'],['contentPlanAligned','Content plan sesuai strategi'],['outputBriefAligned','Output sesuai brief'],['recommendationDataBased','Rekomendasi berbasis data']];
+html+=list.map(r=>{const checked=checks.filter(([k])=>r[k]==='Ya').length;return `<div class="action-row"><div><strong>${esc(r.client)} · ${checked}/${checks.length} checklist terpenuhi</strong><small>${checks.map(([k,label])=>`${label}: ${r[k]==='Ya'?'Ya':'Belum dicentang'}`).join('<br>')}<br>Catatan: ${esc(r.strategyEvidenceNotes||'Tidak ada catatan')}</small></div>${tag(checked===4?'On Track':checked>=2?'Perlu Perhatian':'Berisiko')}</div>`}).join('');
+html+='</div>';
+html+='<div class="report-block"><h3>7. Agenda / Keputusan yang Dibutuhkan di Weekly Meeting</h3>';
+const discuss=list.filter(r=>isAttention(r)||r.ownerDecision==='Ya');
+html+=discuss.length?discuss.map(r=>`<div class="action-row"><div><strong>${esc(r.client)} ${r.ownerDecision==='Ya'?'· PERLU KEPUTUSAN OWNER':''}</strong><small>Masalah: ${esc(r.issue||'Status '+r.status)}<br>Follow-up PM: ${esc(r.followup||'Belum dicatat')}<br>Usulan: ${esc(r.solution||'Solusi perlu dibahas dalam rapat')}</small></div>${tag(r.impact==='Kritis'||r.impact==='Tinggi'?'Berisiko':'Perlu Perhatian')}</div>`).join(''):'<p>Tidak ada isu khusus yang perlu keputusan. Gunakan rapat untuk menyepakati prioritas dan mengecek progres rutin.</p>';
+html+='</div>';
+html+='<div class="report-block"><h3>8. Action Plan Minggu Depan</h3>';
+const acts=list.filter(r=>val(r,'next')||val(r,'solution'));
+html+=acts.length?acts.map(r=>`<div class="action-row"><div><strong>${esc(r.client)} — ${esc(r.pic||'PIC belum ditentukan')}</strong><small>${esc(r.next||r.solution)}<br>Rekomendasi: ${esc(r.recommendation||'Belum diisi')}<br>PIC: ${esc(r.pic||'Belum ditentukan')} · Deadline: ${esc(r.deadline||'Belum ditentukan')}<br>Status: ${esc(r.actionStatus||'Belum ditentukan')}</small></div>${tag(r.actionStatus==='Selesai'?'On Track':r.actionStatus==='Terhambat'?'Berisiko':'Perlu Perhatian')}</div>`).join(''):'<p>Belum ada rencana tindak lanjut. Lengkapi kolom prioritas minggu depan pada laporan klien.</p>';
+html+='</div><p class="footer-note">Analisis otomatis ini adalah rangkuman berbasis input PM, bukan pengganti validasi data. Keputusan rapat dan status penyelesaian perlu diperbarui pada laporan minggu berikutnya.</p>';
+$('#analysisContent').innerHTML=html;
+}
+function renderHistory(){
+$('#historyContent').innerHTML=reports.length?`<div class="table-wrap"><table><thead><tr><th>Periode</th><th>Klien</th><th>PM</th><th>Status klien</th><th>Task</th><th>Status action</th><th>Aksi</th></tr></thead><tbody>${reports.map(r=>`<tr><td>${esc(r.week)}</td><td><b>${esc(r.client)}</b></td><td>${esc(r.pm)}</td><td>${tag(r.status)}</td><td>${r.completed}/${r.planned}</td><td>${esc(r.actionStatus||'—')}</td><td><button class="btn small" onclick="viewReport('${r.id}')">Lihat</button> <button class="btn small" onclick="deleteReport('${r.id}')">Hapus</button></td></tr>`).join('')}</tbody></table></div>`:'<div class="empty">Belum ada riwayat laporan.</div>'
+}
+window.viewReport=id=>{let r=reports.find(x=>x.id===id);if(!r)return;nav('report');const section=(title,key)=>`<div class="report-block"><h3>${title}</h3><p>${esc(r[key]||'Belum diisi')}</p></div>`;$('#analysisContent').innerHTML=`<div class="panel-head"><div><h2>${esc(r.client)} · ${esc(r.week)}</h2><p>PM: ${esc(r.pm)} · ${esc(r.status)}</p></div><button class="btn" onclick="renderAll();renderAnalysis()">Kembali ke analisis gabungan</button></div>${section('Progres','progress')}${'<div class="report-block"><h3>Hasil / Performa</h3>'+performanceMarkup(r)+'</div>'}${section('Status action minggu sebelumnya','previousActionStatus')}${section('Deadline awal','originalDeadline')}${section('Tanggal aktual / estimasi terbaru','actualOrRevisedDate')}${section('Alasan perubahan deadline','deadlineChangeReason')}${section('Hasil follow-up action sebelumnya','previousActionResult')}${section('Checklist strategi - tujuan/KPI sesuai','strategyGoalAligned')}${section('Checklist content plan sesuai strategi','contentPlanAligned')}${section('Checklist output sesuai brief','outputBriefAligned')}${section('Checklist rekomendasi berbasis data','recommendationDataBased')}${section('Catatan bukti strategi/eksekusi','strategyEvidenceNotes')}${section('Kendala','issue')}${section('Divisi terkait','division')}${section('Root cause','cause')}${section('Tanggal masalah diketahui','issueKnownDate')}${section('Tanggal eskalasi','escalationDate')}${section('Follow-up PM','followup')}<div class="report-block"><h3>File bukti</h3><p>${r.evidenceFiles?.length?r.evidenceFiles.map(f=>esc(f.name)+' ('+bytesLabel(f.size)+')').join('<br>'):'Tidak ada file bukti yang dilampirkan.'}</p></div>${section('Dampak','impact')}${section('Solusi','solution')}${section('Rekomendasi PM','recommendation')}${section('PIC','pic')}${section('Deadline','deadline')}${section('Status action','actionStatus')}${section('Prioritas minggu depan','next')}${section('Catatan','notes')}`}
+window.deleteReport=id=>{if(confirm('Hapus laporan ini?')){reports=reports.filter(r=>r.id!==id);save()}}
+$('#clearBtn').onclick=()=>{if(confirm('Hapus semua data laporan yang tersimpan di browser ini?')){reports=[];save()}}
+$('#exportBtn').onclick=()=>{const blob=new Blob([JSON.stringify(reports,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='aksara-weekly-progress.json';a.click();URL.revokeObjectURL(a.href)}
+$('#copyReport').onclick=async()=>{let txt=$('#analysisContent').innerText;try{await navigator.clipboard.writeText(txt);alert('Ringkasan berhasil disalin.')}catch(e){let t=document.createElement('textarea');t.value=txt;document.body.appendChild(t);t.select();document.execCommand('copy');t.remove();alert('Ringkasan disalin.')}}
+renderAll();
+</script>
+</body></html>
